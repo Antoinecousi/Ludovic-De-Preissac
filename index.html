@@ -58,44 +58,37 @@
 
     /* Header avec effet parallax */
     header {
-      height: 100vh;
-      color: var(--secondary-color);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
       position: relative;
-      /* Effet parallax sur le background */
-      background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1920/1080');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      text-align: center;
-      padding: 0 20px;
+      width: 100%;
+      height: 100vh; /* Prend toute la hauteur de l'écran */
+      overflow: hidden;
     }
 
-    /* Désactivation du background-attachment sur mobile */
-    @media (max-width: 768px) {
-      header {
-        background-attachment: scroll;
-      }
-      h1 {
-        font-size: 3rem;
-      }
-      .section-title {
-        font-size: 2rem;
-      }
-      nav ul {
-        flex-direction: column;
-        align-items: center;
-      }
-      nav li {
-        margin: 5px 0;
-      }
+    #bg-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover; /* Ajuste la vidéo pour couvrir tout l'écran */
+      transform: translate(-50%, -50%);
+      z-index: -1; /* Met la vidéo derrière le texte */
+      transition: transform 0.1s ease-out;
     }
 
     .header-content {
-      max-width: 800px;
-      margin: 0 auto;
+      position: relative;
+      z-index: 2; /* Texte au-dessus de la vidéo */
+      text-align: center;
+      color: white;
+    }
+
+    /* Parallax effect */
+    @media (min-width: 768px) {
+      /* Activer l'effet seulement sur les écrans larges */
+      body {
+        perspective: 1000px;
+      }
     }
     h1 {
       font-family: var(--font-main);
@@ -313,6 +306,10 @@
   </nav>
 
   <header>
+    <video autoplay muted loop playsinline id="bg-video">
+      <source src="videos/Untitled design.mp4" type="video/mp4">
+      Votre navigateur ne supporte pas la vidéo.
+    </video>
     <div class="header-content">
       <h1>Ludovic de Preissac</h1>
       <div class="tagline">Pianiste Jazz • Compositeur • Enseignant</div>
@@ -450,6 +447,15 @@
       const nav = document.querySelector('nav');
       nav.style.background = window.scrollY > 100 ? 'rgba(0, 0, 0, 0.9)' : 'rgba(0, 0, 0, 0.8)';
     });
+
+    document.addEventListener("scroll", function () {
+      let scrollPos = window.scrollY;
+      let video = document.getElementById("bg-video");
+
+      // Applique un léger déplacement sur la vidéo en fonction du scroll
+      video.style.transform = `translate(-50%, calc(-50% + ${scrollPos * 0.2}px))`;
+    });
+
 
     // Form submission (simulate behavior)
     const form = document.getElementById('contactForm');

@@ -1,498 +1,552 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michel Dupont | Pianiste Jazz</title>
-    <style>
-        /* Variables */
-        :root {
-            --primary-color: #1a1a1a;
-            --secondary-color: #f5f5f5;
-            --accent-color: #c9a959;
-            --text-color: #333;
-            --font-main: 'Georgia', serif;
-            --font-secondary: 'Helvetica', sans-serif;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ludovic de Preissac | Pianiste Jazz</title>
+  <style>
 
-        /* Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    @font-face {
+      font-family: 'LetsJazz';
+      src: url('fonts/jazzfont.otf') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    /* Variables */
+    :root {
+      --primary-color: #2d2d2d;
+      --secondary-color: #f9f7f3;
+      --accent-color: #c9a959;
+      --accent-secondary: #e2b091;
+      --text-color: #333333;
+      --light-text: #f9f7f3;
+      --footer-color: #2d2d2d;
+      --section-alt: #f0f0e8;
+      --font-main: 'Georgia', serif;
+      --font-secondary: 'Helvetica', sans-serif;
+    }
+    
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: var(--font-secondary);
-            line-height: 1.6;
-            color: var(--text-color);
-            overflow-x: hidden;
-        }
+    body {
+      font-family: var(--font-secondary);
+      line-height: 1.6;
+      color: var(--text-color);
+      overflow-x: hidden;
+    }
 
-        /* Header */
-        header {
-            height: 100vh;
-            background-color: var(--primary-color);
-            color: var(--secondary-color);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1920/1080');
-            background-size: cover;
-            background-position: center;
-        }
+    /* Navigation */
+    nav {
+      background: rgba(0, 0, 0, 0.8);
+      position: fixed;
+      width: 100%;
+      z-index: 10;
+      top: 0;
+      left: 0;
+    }
+    nav ul {
+      font-family: "Nunito", sans-serif;
+      font-weight: 300;
+      display: flex;
+      justify-content: right;
+      list-style: none;
+      padding: 20px 0;
+      margin-right: 3vh;
+    }
+    nav li {
+      margin: 0 15px;
+    }
+    nav a {
+      color: var(--secondary-color);
+      font: 100;
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: var(--accent-color);
+    }
 
-        .header-content {
-            text-align: center;
-            padding: 0 20px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
+    /* Header avec effet parallax */
+    header {
+      position: relative;
+      width: 100%;
+      height: 80vh; /* Prend toute la hauteur de l'écran */
+      overflow: hidden;
+    }
 
-        h1 {
-            font-family: var(--font-main);
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            font-weight: normal;
-        }
+    #bg-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100vw;
+      height: 80vh;
+      object-fit: cover; /* Ajuste la vidéo pour couvrir tout l'écran */  
+      transform: translate(-50%, -50%);
+      z-index: -1; /* Met la vidéo derrière le texte */
+      transition: transform 0.1s ease-out;
+    }
 
-        .tagline {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-            color: var(--accent-color);
-            font-style: italic;
-        }
+    .header-content {
+      position: relative;
+      z-index: 2;
+      color: #c9a959;
+      text-align: center;
+      display: grid;
+      place-items: center;
+      height: 100%;
+      
+    }
 
-        /* Navigation */
-        nav {
-            background: rgba(0, 0, 0, 0.8);
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-            top: 0;
-        }
+    .header-content h1 {
+      padding: 5px 10px;
+      border-radius: 3px;
+      font-family: 'LetsJazz', sans-serif;
+    }
+    .header-content h2 {
+      font-family: "Nunito", sans-serif;
+      font-weight: 300;
+      background: rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(1px);
+      padding: 5px 10px;
+      border-radius: 3px;
+    }
 
-        nav ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            padding: 20px 0;
-        }
+    .header-content h2 {
+      color: white;
+      justify-content: right;
+    }
+    /* Parallax effect */
+    @media (min-width: 768px) {
+      /* Activer l'effet seulement sur les écrans larges */
+      body {
+        perspective: 1000px;
+      }
+    }
+    h1 {
+      font-family: var(--font-main);
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      font-weight: normal;
+    }
+    .tagline {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: var(--accent-color);
+      font-style: italic;
+    }
 
-        nav li {
-            margin: 0 15px;
-        }
+    /* Sections */
+    section {
+      padding: 80px 20px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-title {
+      text-align: center;
+      font-family: 'LetsJazz', sans-serif;
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      color: var(--primary-color);
+      position: relative;
+    }
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: var(--accent-color);
+      margin: 15px auto;
+    }
 
-        nav a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s;
-        }
+    /* Biographie */
+    .parallax {
+      flex: 1.5;
+      top: 100%; /* Ajoute un décalage vertical pour commencer après l'élément précédent */
+      min-width: 1000px;
+      max-width: 1000px;
+      height: 80vh; /* Ajuste la hauteur selon ton besoin */
+      background-image: url('images/ludo_bg_reversed.jpg'); /* Image en fond */
+      background-size: contain;
+      background-position: top; /* L'image commence par le bas, centré */
+      background-attachment: fixed; /* Active l’effet parallax */
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      /*margin-top: -80vh;*/
+    }
 
-        nav a:hover {
-            color: var(--accent-color);
-        }
+    #biographie {
+      background-color: #fdeade;
+      position: relative;
+      z-index: 1;
+    }
 
-        /* Sections */
-        section {
-            padding: 80px 20px;
-        }
+    .bio-container {
+      font-family: "Nunito", sans-serif;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+    .bio-image {
+      flex: 1.5; /* Augmente la taille de l'image par rapport au texte */
+      min-width: 1100px; /* Évite que l’image devienne trop petite sur petits écrans */
+      max-width: 1100px; /* Empêche l’image de devenir trop grande */
+    }
 
-        .section-title {
-            text-align: center;
-            font-family: var(--font-main);
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: var(--primary-color);
-            position: relative;
-        }
+    .bio-image img {
+      width: 100%; /* S’assure que l’image remplit bien son conteneur */
+      height: auto;
+      object-fit: cover; /* Ajuste bien le cadrage */
+      border-radius: 10px; /* Arrondit légèrement les coins */
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
 
-        .section-title:after {
-            content: '';
-            display: block;
-            width: 50px;
-            height: 3px;
-            background: var(--accent-color);
-            margin: 15px auto;
-        }
+    .bio-text {
+      flex: 2;
+      min-width: 300px;
+    }
 
-        /* Biography */
-        #biographie {
-            background: var(--secondary-color);
-        }
+    /* Exemple de contenu biographique mis à jour */
+    .bio-text p {
+      margin-bottom: 1rem;
+    }
 
-        .bio-container {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 40px;
-        }
+    /* Discographie */
+    #musique {
+      background: #f9f9f9;
+    }
+    .music-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    .album {
+      background: white;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+    .album:hover {
+      transform: translateY(-5px);
+    }
+    .album-cover {
+      height: 300px;
+      background-color: #ddd;
+      background-image: url('/api/placeholder/300/300');
+      background-size: cover;
+    }
+    .album-info {
+      padding: 20px;
+    }
+    .album-title {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    .album-year {
+      color: #777;
+      font-size: 0.9rem;
+    }
 
-        .bio-image {
-            flex: 1;
-            min-width: 300px;
-        }
+    /* Concerts */
+    #concerts {
+      background: var(--primary-color);
+      color: var(--secondary-color);
+    }
+    #concerts .section-title {
+      color: var(--secondary-color);
+    }
+    .concert-list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .concert-item {
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .concert-item:last-child {
+      border-bottom: none;
+    }
+    .concert-date {
+      color: var(--accent-color);
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    .concert-venue {
+      font-size: 1.3rem;
+      margin-bottom: 5px;
+    }
+    .concert-location {
+      color: #aaa;
+      font-style: italic;
+      margin-bottom: 10px;
+    }
 
-        .bio-image img {
-            width: 100%;
-            border-radius: 5px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
+    /* Contact */
+    #contact {
+      background: var(--secondary-color);
+    }
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .contact-info {
+      flex: 1;
+      min-width: 300px;
+    }
+    .contact-form {
+      flex: 2;
+      min-width: 300px;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: var(--font-secondary);
+    }
+    form textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    button {
+      background: var(--accent-color);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #b69448;
+    }
 
-        .bio-text {
-            flex: 2;
-            min-width: 300px;
-        }
-
-        /* Music */
-        #musique {
-            background: #f9f9f9;
-        }
-
-        .music-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .album {
-            background: white;
-            border-radius: 5px;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-
-        .album:hover {
-            transform: translateY(-5px);
-        }
-
-        .album-cover {
-            height: 300px;
-            background-color: #ddd;
-            background-image: url('/api/placeholder/300/300');
-            background-size: cover;
-        }
-
-        .album-info {
-            padding: 20px;
-        }
-
-        .album-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-
-        .album-year {
-            color: #777;
-            font-size: 0.9rem;
-        }
-
-        /* Calendar */
-        #concerts {
-            background: var(--primary-color);
-            color: var(--secondary-color);
-        }
-
-        #concerts .section-title {
-            color: var(--secondary-color);
-        }
-
-        .concert-list {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .concert-item {
-            margin-bottom: 30px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .concert-item:last-child {
-            border-bottom: none;
-        }
-
-        .concert-date {
-            color: var(--accent-color);
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .concert-venue {
-            font-size: 1.3rem;
-            margin-bottom: 5px;
-        }
-
-        .concert-location {
-            color: #aaa;
-            font-style: italic;
-            margin-bottom: 10px;
-        }
-
-        /* Contact */
-        #contact {
-            background: var(--secondary-color);
-        }
-
-        .contact-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-        }
-
-        .contact-info {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .contact-form {
-            flex: 2;
-            min-width: 300px;
-        }
-
-        form input, form textarea {
-            width: 100%;
-            padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: var(--font-secondary);
-        }
-
-        form textarea {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        button {
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            font-size: 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        button:hover {
-            background: #b69448;
-        }
-
-        /* Footer */
-        footer {
-            background: #111;
-            color: #777;
-            padding: 30px 20px;
-            text-align: center;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .social-links a {
-            color: var(--secondary-color);
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 3rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            nav ul {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            nav li {
-                margin: 5px 0;
-            }
-        }
-    </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    /* Footer */
+    footer {
+      background: #111;
+      color: #777;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+    .social-links a {
+      color: var(--secondary-color);
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+    .social-links a:hover {
+      color: var(--accent-color);
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="shortcut icon" href="images/favicon_ludo_2.png">
+  <link rel="icon" href="images/favicon_ludo_2.png" type="image/x-icon">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#biographie">Biographie</a></li>
-            <li><a href="#musique">Musique</a></li>
-            <li><a href="#concerts">Concerts</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+  <nav>
+    <ul>
+      <li><a href="#biographie">Biographie</a></li>
+      <li><a href="#musique">Discographie</a></li>
+      <li><a href="#concerts">Concerts</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-    <header>
-        <div class="header-content">
-            <h1>Michel Dupont</h1>
-            <div class="tagline">Pianiste Jazz • Compositeur • Improvisateur</div>
-            <a href="#concerts" class="btn-primary">Prochains concerts</a>
+  <header>
+    <video autoplay muted loop playsinline id="bg-video">
+      <source src="videos/ludo_full.mp4" type="video/mp4">
+    </video>
+    <div class="header-content">
+      <h1>Ludovic de Preissac</h1>
+      <h2>Pianiste Jazz • Compositeur • Enseignant</h2>
+      <!--<div class="tagline">Pianiste Jazz • Compositeur • Enseignant</div>-->
+    </div>
+  </header>
+
+  <section id="biographie">
+    <div class="bio-container">
+      <!--<h2 class="section-title">Biographie</h2>-->
+        <div class="bio-text">
+          <h2 class="section-title">Biographie</h2>
+          <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;Ludovic de Preissac, né en 1962, est un pianiste de jazz qui a su tracer son propre chemin. Passionné depuis l’enfance, il s’est formé en autodidacte avant de se faire une place sur la scène jazz française. <br><br>
+            &nbsp;&nbsp;Il s’illustre autant en leader qu’en sideman, jouant avec des musiciens comme Sylvain Beuf, Alexandre Terrier, Baptiste Herbin. Son album West Side Story (2010) revisite le classique de Bernstein avec une touche swing inspirée d’Oscar Peterson. Avec L’Enjeu des Paradoxes (2013), il explore ses propres compositions dans un esprit d’échange et d’improvisation. <br> <br>
+            &nbsp;&nbsp;En plus de ses concerts et enregistrements, il enseigne le jazz et partage son expérience avec la nouvelle génération. Que ce soit sur scène ou en classe, Ludovic privilégie une approche vivante et accessible du jazz, toujours tournée vers le plaisir du jeu et le dialogue musical.
+          </p>
         </div>
-    </header>
+        <div class="bio-image parallax"></div>
+      </div>
+    </div>
+  </section>
 
-    <section id="biographie">
-        <div class="container">
-            <h2 class="section-title">Biographie</h2>
-            <div class="bio-container">
-                <div class="bio-image">
-                    <img src="/api/placeholder/600/800" alt="Michel Dupont au piano">
-                </div>
-                <div class="bio-text">
-                    <p>Michel Dupont est un pianiste de jazz reconnu pour son style unique qui mêle traditions du jazz classique et innovations contemporaines.</p>
-                    <p>Formé au Conservatoire National Supérieur de Musique de Paris, il a développé son art auprès des plus grands noms du jazz français et international. Sa technique impeccable et sa sensibilité musicale exceptionnelle lui ont permis de se produire sur les scènes les plus prestigieuses, du Blue Note de New York au Festival de Jazz de Montreux.</p>
-                    <p>Avec plus de 15 albums à son actif, Michel continue d'explorer les frontières du jazz, collaborant avec des musiciens de tous horizons et cherchant sans cesse à renouveler son art.</p>
-                    <p>Outre sa carrière de soliste, il dirige son propre trio depuis 2005 et enseigne le piano jazz au Conservatoire de Paris, transmettant sa passion aux nouvelles générations de musiciens.</p>
-                </div>
-            </div>
+  <section id="musique">
+    <div class="container">
+      <h2 class="section-title">Discographie</h2>
+      <div class="music-container">
+        <!-- Album 1 -->
+        <div class="album">
+          <div class="album-info">
+            <h3 class="album-title">West Side Story</h3>
+            <p class="album-year">2010</p>
+            <!-- Lecteur Spotify -->
+            <iframe src="https://open.spotify.com/embed/album/2fNogqdrhU6rpYZ27keTBq" 
+                    width="100%" height="380" frameborder="0" 
+                    allowtransparency="true" 
+                    allow="encrypted-media"></iframe>
+          </div>
         </div>
-    </section>
-
-    <section id="musique">
-        <div class="container">
-            <h2 class="section-title">Discographie</h2>
-            <div class="music-container">
-                <div class="album">
-                    <div class="album-cover"></div>
-                    <div class="album-info">
-                        <h3 class="album-title">Résonances Nocturnes</h3>
-                        <p class="album-year">2023</p>
-                        <audio controls src="" class="audio-player">Votre navigateur ne supporte pas la lecture audio</audio>
-                    </div>
-                </div>
-                <div class="album">
-                    <div class="album-cover"></div>
-                    <div class="album-info">
-                        <h3 class="album-title">Improvisation sur Seine</h3>
-                        <p class="album-year">2021</p>
-                        <audio controls src="" class="audio-player">Votre navigateur ne supporte pas la lecture audio</audio>
-                    </div>
-                </div>
-                <div class="album">
-                    <div class="album-cover"></div>
-                    <div class="album-info">
-                        <h3 class="album-title">Rencontres</h3>
-                        <p class="album-year">2019</p>
-                        <audio controls src="" class="audio-player">Votre navigateur ne supporte pas la lecture audio</audio>
-                    </div>
-                </div>
-            </div>
+        
+        <!-- Album 2 -->
+        <div class="album">
+          <div class="album-info">
+            <h3 class="album-title">L'Enjeu des Paradoxes</h3>
+            <p class="album-year">2013</p>
+            <!-- Lecteur Spotify -->
+            <iframe src="https://open.spotify.com/embed/album/0a9BwIRyOu0ILTi6j9Q0Os" 
+                    width="100%" height="380" frameborder="0" 
+                    allowtransparency="true" 
+                    allow="encrypted-media"></iframe>
+          </div>
         </div>
-    </section>
-
-    <section id="concerts">
-        <div class="container">
-            <h2 class="section-title">Prochains Concerts</h2>
-            <div class="concert-list">
-                <div class="concert-item">
-                    <div class="concert-date">15 Avril 2025</div>
-                    <div class="concert-venue">Jazz Club de Paris</div>
-                    <div class="concert-location">Paris, France</div>
-                    <p>Michel Dupont Trio - Soirée spéciale compositions originales</p>
-                </div>
-                <div class="concert-item">
-                    <div class="concert-date">28 Avril 2025</div>
-                    <div class="concert-venue">Festival Jazz en Ville</div>
-                    <div class="concert-location">Lyon, France</div>
-                    <p>Concert hommage à Bill Evans</p>
-                </div>
-                <div class="concert-item">
-                    <div class="concert-date">10 Mai 2025</div>
-                    <div class="concert-venue">Blue Note</div>
-                    <div class="concert-location">New York, USA</div>
-                    <p>Collaboration spéciale avec Sarah Williams (saxophone)</p>
-                </div>
-            </div>
+        
+        <!-- Album 3 -->
+        <div class="album">
+          <div class="album-info">
+            <h3 class="album-title">Retrouvailles</h3>
+            <p class="album-year">2007</p>
+            <!-- Lecteur Spotify -->
+            <iframe src="https://open.spotify.com/embed/album/15BY8tMQRobEukp8B404er" 
+                    width="100%" height="380" frameborder="0" 
+                    allowtransparency="true" 
+                    allow="encrypted-media"></iframe>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title">Contact</h2>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Booking &amp; Informations</h3>
-                    <p>Pour toute demande concernant les concerts, collaborations ou cours particuliers, n'hésitez pas à me contacter.</p>
-                    <p><strong>Email:</strong> contact@micheldupont.com</p>
-                    <p><strong>Management:</strong> Marie Laurent</p>
-                    <p><strong>Téléphone:</strong> +33 1 23 45 67 89</p>
-                </div>
-                <div class="contact-form">
-                    <form id="contactForm" data-netlify="true">
-                        <input type="text" name="name" placeholder="Votre nom" required>
-                        <input type="email" name="email" placeholder="Votre email" required>
-                        <input type="text" name="subject" placeholder="Sujet">
-                        <textarea name="message" placeholder="Votre message" required></textarea>
-                        <button type="submit">Envoyer</button>
-                    </form>
-                </div>
-            </div>
+  <section id="concerts">
+    <div class="container">
+      <h2 class="section-title">Prochains Concerts</h2>
+      <div class="concert-list">
+        <div class="concert-item">
+          <div class="concert-date">25 Avril 2025</div>
+          <div class="concert-venue">TBD</div>
+          <div class="concert-location">Douarnenez, France</div>
+          <p>Antoine & Ludo - Le jazz dans les ports</p>
         </div>
-    </section>
-
-    <footer>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-            <a href="#"><i class="fab fa-spotify"></i></a>
+        <div class="concert-item">
+          <div class="concert-date">26 Avril 2025</div>
+          <div class="concert-venue">TBD</div>
+          <div class="concert-location">Vannes, France</div>
+          <p>Antoine & Ludo - Le jazz dans les ports</p>
         </div>
-        <p>&copy; 2025 Michel Dupont | Pianiste Jazz</p>
-    </footer>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Navigation smooth scroll
-        document.querySelectorAll('nav a').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                window.scrollTo({
-                    top: targetElement.offsetTop - 80,
-                    behavior: 'smooth'
-                });
-            });
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-container">
+        <div class="contact-info">
+          <h3>Booking & Informations</h3>
+          <p>Pour toute demande concernant concerts, collaborations ou cours particuliers, n'hésitez pas à me contacter.</p>
+          <p><strong>Email:</strong> contact@ludovicdepreissac.com</p>
+          <p><strong>Management:</strong> Jeannine sus4</p>
+          <p><strong>Téléphone:</strong> +33 1 23 45 67 89</p>
+        </div>
+        <div class="contact-form">
+          <form id="contactForm">
+            <input type="text" name="name" placeholder="Votre nom" required>
+            <input type="email" name="email" placeholder="Votre email" required>
+            <input type="text" name="subject" placeholder="Sujet">
+            <textarea name="message" placeholder="Votre message" required></textarea>
+            <button type="submit">Envoyer</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="social-links">
+      <a href="https://www.facebook.com/people/Ludovic-de-Preissac/100009128576000/"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/ludovicdepreissac/"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.youtube.com/user/ludovicdepreissac"><i class="fab fa-youtube"></i></a>
+      <a href="https://open.spotify.com/intl-fr/artist/6ZzcEYN0PuOGGIWyFAzIE2"><i class="fab fa-spotify"></i></a>
+    </div>
+    <p>&copy; 2025 Ludovic de Preissac | Pianiste Jazz</p>
+  </footer>
+
+  <script>
+    // Navigation smooth scroll
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
         });
+      });
+    });
 
-        // Sticky navigation
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(0, 0, 0, 0.9)';
-            } else {
-                nav.style.background = 'rgba(0, 0, 0, 0.8)';
-            }
-        });
-
-        // Form submission (for Netlify)
-        const form = document.getElementById('contactForm');
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('Dans un site réel, ce formulaire enverrait votre message. Pour Netlify, ajoutez data-netlify="true" à la balise form.');
-            });
+    // Sticky navigation background change
+    window.addEventListener('scroll', function() {
+      const scrollPos = window.scrollY;
+      
+      const nav = document.querySelector('nav');
+      if (nav) {
+        nav.style.background = scrollPos > 100 ? 'rgba(0, 0, 0, 0.9)' : 'rgba(0, 0, 0, 0.8)';
+      }
+      
+      const video = document.getElementById("bg-video");
+      if (video) {
+        video.style.transform = `translate(-50%, calc(-50% + ${scrollPos * 0.2}px))`;
+      }
+      const bioSection = document.getElementById("biographie");
+      if (bioSection) {
+        const rect = bioSection.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          const offset = (rect.top / window.innerHeight) * 90;
+          bioSection.style.backgroundPosition = `calc(80% + ${offset}px) calc(80% + ${offset}px)`;
         }
-    </script>
+      }
+    });
+
+
+    // Form submission (simulate behavior)
+    const form = document.getElementById('contactForm');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Dans un site réel, ce formulaire enverrait votre message.');
+      });
+    }
+  </script>
 </body>
 </html>
